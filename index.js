@@ -1,19 +1,23 @@
-var request = require('request');
+const async = require('async');
+const dataAggregator = require('./bin/data-aggregator.js');
 
-console.log('fetching data from coinmarketcap.com');
-request({ method: 'GET', url: 'https://api.coinmarketcap.com/v1/ticker/?limit=10' }, (error, response, body) => {
-	if (error) {
-		console.error(error);
-		return;
-	}
-	if (!response) {
-		console.error('no response');
-		return;
-	}
-	if (response.statusCode !== 200) {
-		console.log('statusCode:', response && response.statusCode);
-		return;
-	}
+let data;
 
-	console.log('body:', body);
+async.series([
+	function(cb) {
+		dataAggregator.start(function(err, results) {
+			if(err) {
+				cb(err);
+			} else {
+				cb(null, results);
+			}
+		});
+	}
+],
+function(err, results) {
+	if(err) {
+		console.error(err);
+	} else {
+		console.log(results);
+	}
 });
