@@ -21,7 +21,13 @@ module.exports = {
 						cb(new Error('bad status code'));
 					}
 					else {
-						cb(null, body);
+						let resJson;
+						try {
+							resJson = JSON.parse(body);
+							cb(null, resJson);
+						} catch(e) {
+							cb(new Error('response is not a valid JSON'));
+						}
 					}
 				});
 			}
@@ -30,7 +36,9 @@ module.exports = {
 			if(err) {
 				callback(err);
 			} else {
-				callback(null, results);
+				callback(null, {
+					coinmarketcap: results[0]
+				});
 			}
 		});
 	}
