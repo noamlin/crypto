@@ -11,6 +11,6 @@ async.waterfall([
 		if(err) {
 			logger.error(err);
 		} else {
-			logger.info('data: %j', results);
+			console.log(results);
 		}
 });
