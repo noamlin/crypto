@@ -8,10 +8,10 @@
 	},
 	"dependencies": {
 		"async": "^2.6.0",
+		"bunyan": "^1.8.12",
 		"express": "^4.16.2",
 		"fast-csv": "^2.4.1",
-		"request": "^2.83.0",
-		"winston": "^3.0.0-rc1"
+		"request": "^2.83.0"
 	},
 	"engines": {
 		"node": "8.9.4"

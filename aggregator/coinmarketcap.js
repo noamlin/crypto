@@ -2,7 +2,7 @@ const logger = require('../server/logger.js');
 const request = require('request');
 
 module.exports = (cb) => {
-	logger.log('info', 'fetching data from coinmarketcap.com');
+	logger.info('fetching data from coinmarketcap.com');
 	request({ method: 'GET', url: 'https://api.coinmarketcap.com/v1/ticker/?limit=10' }, (error, response, body) => {
 		if (error) {
 			logger.error(error);
