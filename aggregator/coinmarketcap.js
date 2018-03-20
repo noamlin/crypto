@@ -1,5 +1,7 @@
+const _globals = require('../server/globals.js');
 const logger = require('../server/logger.js');
 const request = require('request');
+const mongo = require('mongodb');
 
 module.exports = (cb) => {
 	logger.info('fetching data from coinmarketcap.com');
@@ -20,7 +22,27 @@ module.exports = (cb) => {
 			let resJson;
 			try {
 				resJson = JSON.parse(body);
-				cb(null, resJson);
+
+				mongo.MongoClient.connect(_globals.configs.mongodb.url, (mongoErr, client) => {
+					if (mongoErr) {
+						callback(mongoErr);
+					} else {
+						let collection = client.db('crypto').collection('coinmarketcap');
+						let now = new Date();
+
+						for (let i = 0; i < resJson.length; i++) {
+							resJson[i].created = now; //add the timestamp of when inserted to the db
+						}
+
+						collection.insertMany(resJson, null, (insertErr, insertResults) => {
+							if (insertErr) {
+								callback(insertErr);
+							} else {
+								cb(null, resJson);
+							}
+						});
+					}
+				});
 			} catch(e) {
 				cb(new Error('response is not a valid JSON'));
 			}
