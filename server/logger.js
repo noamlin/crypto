@@ -1,11 +1,11 @@
-const globals = require('./globals.js');
+const _globals = require('./globals.js');
 const bunyan = require('bunyan');
 
 let logger;
 
-if (globals.env === 'development') {
+if (_globals.env === 'development') {
 	logger = bunyan.createLogger({
-		name: 'CryptoAlgo',
+		name: _globals.appName,
 		streams: [
 			{
 				level: 'trace',
@@ -19,7 +19,7 @@ if (globals.env === 'development') {
 	});
 } else {
 	logger = bunyan.createLogger({
-		name: 'CryptoAlgo',
+		name: _globals.appName,
 		streams: [
 			{
 				level: 'trace',

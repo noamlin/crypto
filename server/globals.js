@@ -1,5 +1,7 @@
 let env = process.env.NODE_ENV || 'development';
+let appName = 'CryptoAlgo';
 
 module.exports = {
-	env: env
+	env: env,
+	appName: appName
 };

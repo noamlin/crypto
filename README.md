@@ -1,2 +1,4 @@
-# crypto
-crypto
+# CryptoAlgo
+
+### License
+see license file license.txt

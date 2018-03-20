@@ -2,6 +2,7 @@
 	"name": "CryptoAlgo",
 	"version": "0.1.0",
 	"description": "Crypto algorythms for forecasting",
+	"license": "SEE LICENSE IN license.txt",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js"
@@ -10,7 +11,7 @@
 		"async": "^2.6.0",
 		"bunyan": "^1.8.12",
 		"express": "^4.16.2",
-		"fast-csv": "^2.4.1",
+		"mongodb": "^3.0.4",
 		"request": "^2.83.0"
 	},
 	"engines": {
@@ -25,5 +26,9 @@
 	"author": "Noam Lin",
 	"contributors": [
 		"Noam Lin <noamlin@gmail.com>"
-	]
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/noamlin/crypto"
+	}
 }
